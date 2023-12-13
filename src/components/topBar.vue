@@ -1,5 +1,5 @@
 <template>
-    it is topBar
+    <!-- 2023.12.13 我做成了！！✌ -->
     <div class="topbar">
         <div class="logo_box">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
@@ -36,7 +36,7 @@ export default {
 
 }
 </script>
-<style>
+<style scoped>
 .topbar {
     position: relative;
     height: 96px;
@@ -145,4 +145,5 @@ export default {
 
 .topbar .topnav a:hover {
     border-bottom: 3px solid var(--home-foreground-hover);
-}</style>
+}
+</style>

@@ -11,6 +11,7 @@ export default {
     service.getDate()
       .then((res) => {
         this.data = res.data.destinations
+        console.log(this.data[this.id])
       })
   }
 }
@@ -19,7 +20,8 @@ export default {
 <template>
   <h3 class="font2"><span>01</span>PICK YOUR DESTINATION</h3>
   <div class="star">
-    <div class="sphere" :style="{ background: `url('${data[id].images.png}')` }"></div>
+    <div class="sphere" :style="{ background: `url(${data[id]?.images?.png})` }">
+    </div>
     <div class="describe">
       <ul class="rightnav font2">
         <li><a href="#" :class="{ active: id === 0 }" @click="id = 0">MOON</a></li>
@@ -28,17 +30,17 @@ export default {
         <li><a href="#" :class="{ active: id === 3 }" @click="id = 3">TITAN</a></li>
       </ul>
       <div class="detail">
-        <h2 class="font1">{{ data[id].name }}</h2>
-        <p class="font3 description">{{ data[id].description }}</p>
+        <h2 class="font1">{{ data[id]?.name }}</h2>
+        <p class="font3 description">{{ data[id]?.description }}</p>
         <div class="detail_line"></div>
         <div class="detail_travel">
           <div class="detail_box">
             <p class="font2 text">Avg. distance</p>
-            <p class="font1 distance">{{ data[id].distance }}</p>
+            <p class="font1 distance">{{ data[id]?.distance }}</p>
           </div>
           <div class="detail_box">
             <p class="font2 text">Est. travel time</p>
-            <p class="font1 travel">{{ data[id].travel }}</p>
+            <p class="font1 travel">{{ data[id]?.travel }}</p>
           </div>
         </div>
       </div>
@@ -111,6 +113,7 @@ h3 span {
 }
 
 .star .sphere {
+  background: url('./assets/destination/image-moon.png');
   background-size: cover;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {

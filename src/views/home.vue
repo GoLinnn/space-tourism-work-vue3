@@ -1,4 +1,4 @@
-<script setup>
+<script>
 
 </script>
 
@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   body {

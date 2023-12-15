@@ -27,7 +27,7 @@
 ---db.json
 ```
 
-在destination.vue中<img src=''>的src使用`./assets/destination/image-moon.png`或`@/assets/destination/image-moon.png`形式来引用图片，可以正确解析图片路径
+在destination.vue中`<img src=''>`的src使用`./assets/destination/image-moon.png`或`@/assets/destination/image-moon.png`形式来引用图片，可以正确解析图片路径
 
 但是当使用变量存放以上两种形式的图片路径时，发现无法正确解析图片，将路径修改成`/src/assets/destination/image-moon.png`时，可以正确解析图片路径
 

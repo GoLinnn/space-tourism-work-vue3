@@ -11,9 +11,8 @@ export default {
     }
   },
   async created() {
-    await axios.get('db.json').then((res) => {
-      this.destinations = res.data.destinations;
-    })
+    const res = await axios.get('db.json')
+    this.destinations = res.data.destinations;
   },
   methods: {
     updateDes(destination, index) {

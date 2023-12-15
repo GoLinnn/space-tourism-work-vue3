@@ -3,51 +3,50 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      data: [],
-      currentImage: '../assets/destination/image-moon.png',
+      destinations: [],
+      currentImage: '/src/assets/destination/image-moon.png',
+      // 若将图片放到public文件下则不会经过打包处理
+      // currentImage: '/image-moon.png',
       id: 0
     }
   },
   async created() {
     await axios.get('db.json').then((res) => {
-      this.data = res.data.destinations;
+      this.destinations = res.data.destinations;
     })
   },
-  updated() {
-    return console.log(this.data[this.id].images.png)
-  },
-  // methods {
-  //   changeImage() {
-  //     this.currentImage = 
-  //   }
-  // }
+  methods: {
+    updateDes(destination, index) {
+      this.currentImage = destination.images.png;
+      this.id = index;
+    }
+  }
 }
 </script>
 
 <template>
   <h3 class="font2"><span>01</span>PICK YOUR DESTINATION</h3>
   <div class="star">
-    <div class="sphere" :style="{ background: `url( ${data[id]?.images.png} )` }">
+    <div class="sphere" :style="{ background: `url( ${currentImage} )` }">
     </div>
     <div class="describe">
       <ul class="rightnav font2">
-        <li><a href="#" :class="{ active: id === 0 }" @click="id = 0">MOON</a></li>
-        <li><a href="#" :class="{ active: id === 1 }" @click="id = 1">MARS</a></li>
-        <li><a href="#" :class="{ active: id === 2 }" @click="id = 2">EUROPA</a></li>
-        <li><a href="#" :class="{ active: id === 3 }" @click="id = 3">TITAN</a></li>
+        <li v-for="(destination, index) in destinations" :key="index"><a href="#" :class="{ active: id === index }"
+            @click="updateDes(destination, index)">{{ destination.name }}</a></li>
       </ul>
-      <div class="detail">
-        <h2 class="font1">{{ data[id]?.name }}</h2>
-        <p class="font3 description">{{ data[id]?.description }}</p>
+      <!-- 防止渲染前data未准备好 -->
+      <div class="detail" v-if="destinations.length > 0">
+        <h2 class="font1">{{ destinations[id].name }}</h2>
+        <p class="font3 description">{{ destinations[id].description }}</p>
         <div class="detail_line"></div>
         <div class="detail_travel">
           <div class="detail_box">
             <p class="font2 text">Avg. distance</p>
-            <p class="font1 distance">{{ data[id]?.distance }}</p>
+            <p class="font1 distance">{{ destinations[id].distance }}</p>
           </div>
           <div class="detail_box">
             <p class="font2 text">Est. travel time</p>
-            <p class="font1 travel">{{ data[id]?.travel }}</p>
+            <p class="font1 travel">{{ destinations[id].travel }}</p>
           </div>
         </div>
       </div>
@@ -120,7 +119,7 @@ h3 span {
 }
 
 .star .sphere {
-  /* background: url('../assets/destination/image-moon.png'); */
+  background: url('../assets/destination/image-moon.png');
   background-size: cover;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {

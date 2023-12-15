@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       destinations: [],
-      currentImage: '/src/assets/destination/image-moon.png',
+      currentImage: '',
       // 若将图片放到public文件下则不会经过打包处理
       // currentImage: '/image-moon.png',
       id: 0
@@ -26,8 +26,14 @@ export default {
 <template>
   <h3 class="font2"><span>01</span>PICK YOUR DESTINATION</h3>
   <div class="star">
-    <div class="sphere" :style="{ background: `url( ${currentImage} )` }">
+    <!-- 星球图片 -->
+    <div class="sphere" v-if="destinations.length > 0">
+      <img :src="currentImage" alt="">
     </div>
+    <!-- 防止渲染前data未准备好 -->
+    <div class="sphere" v-else>Loading...</div>
+
+    <!-- 描述 -->
     <div class="describe">
       <ul class="rightnav font2">
         <li v-for="(destination, index) in destinations" :key="index"><a href="#" :class="{ active: id === index }"
@@ -48,6 +54,10 @@ export default {
             <p class="font1 travel">{{ destinations[id].travel }}</p>
           </div>
         </div>
+      </div>
+      <div class="detail" v-else>
+        <!-- 数据未加载好时 -->
+        <p>Loading...</p>
       </div>
     </div>
   </div>

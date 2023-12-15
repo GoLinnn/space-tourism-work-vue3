@@ -59,3 +59,48 @@ data属性使用函数的形式，每次创建组件实例时，会返回一个�
 https://cn.vuejs.org/guide/essentials/list.html
 
 `v-for` 的作用域限定在其标签内部，并且在其内部可以访问到 `v-for` 的参数以及组件实例中的数据和方法。
+
+## 当数据未准备好但页面已开始渲染的解决方案
+
+当数据未准备好但页面已开始渲染，这可能导致页面出现错误或显示不完整。以下是解决这种情况的几种方法：
+
+1. **条件渲染**：使用 `v-if` 或 `v-show` 指令在模板中对数据准备情况进行检查，并只有在数据准备好时才渲染相关内容。这样可以防止未准备好的数据影响页面的显示。
+
+   ```
+   vueCopy code<div v-if="dataIsReady">
+       <!-- 在此处放置需要渲染的内容 -->
+   </div>
+   ```
+
+2. **加载状态/占位符**：在数据未准备好时，可以使用加载状态或占位符来代替页面内容。这样可以让用户知道数据正在加载，并避免页面因数据未准备好而显示错误内容。
+
+   ```
+   vueCopy code<div v-if="!dataIsReady">
+       <!-- 显示加载状态或占位符 -->
+       <p>Loading...</p>
+   </div>
+   <div v-else>
+       <!-- 数据准备好后渲染的内容 -->
+       <p>{{ yourData }}</p>
+   </div>
+   ```
+
+3. **异步加载数据**：尽可能地提前加载数据，例如在组件生命周期的 `created` 钩子中触发异步操作来获取数据。这样可以尽早地开始数据加载，以减少数据准备时间和页面渲染之间的差异。
+
+   ```
+   javascriptCopy codeexport default {
+       data() {
+           return {
+               dataIsReady: false,
+               yourData: null
+           };
+       },
+       created() {
+           fetchData().then((data) => {
+               this.yourData = data;
+               this.dataIsReady = true;
+           });
+       }
+   };
+   ```
+

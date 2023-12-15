@@ -1,26 +1,33 @@
 <script>
-import service from '@/service/service.js'
+import axios from 'axios'
 export default {
   data() {
     return {
       data: [],
+      currentImage: '../assets/destination/image-moon.png',
       id: 0
     }
   },
-  created() {
-    service.getDate()
-      .then((res) => {
-        this.data = res.data.destinations
-        console.log(this.data[this.id])
-      })
-  }
+  async created() {
+    await axios.get('db.json').then((res) => {
+      this.data = res.data.destinations;
+    })
+  },
+  updated() {
+    return console.log(this.data[this.id].images.png)
+  },
+  // methods {
+  //   changeImage() {
+  //     this.currentImage = 
+  //   }
+  // }
 }
 </script>
 
 <template>
   <h3 class="font2"><span>01</span>PICK YOUR DESTINATION</h3>
   <div class="star">
-    <div class="sphere" :style="{ background: `url(${data[id]?.images?.png})` }">
+    <div class="sphere" :style="{ background: `url( ${data[id]?.images.png} )` }">
     </div>
     <div class="describe">
       <ul class="rightnav font2">
@@ -113,7 +120,7 @@ h3 span {
 }
 
 .star .sphere {
-  background: url('./assets/destination/image-moon.png');
+  /* background: url('../assets/destination/image-moon.png'); */
   background-size: cover;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {

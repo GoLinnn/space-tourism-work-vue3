@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       crews: [],
-      currentImage: '',
+      currentImage: '/src/assets/crew/image-douglas-hurley.png',
       id: 0
     }
   },
@@ -39,7 +39,7 @@ export default {
             @click="updateCrew(crew, index)"></a></li>
       </ul>
     </div>
-    <div class="peopleImg"></div>
+    <div v-if="crews.length > 0" class="peopleImg" :style="{ background: `url(${currentImage}) no-repeat` }"></div>
   </div>
 </template>
 
@@ -273,7 +273,6 @@ h3 span {
 
 /* 人物图片 */
 .peopleImg {
-  background: url('../assets/crew/image-douglas-hurley.png') no-repeat;
   background-size: 100%;
 
   @media screen and (min-width: 768px) {

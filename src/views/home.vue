@@ -12,7 +12,7 @@
         because we’ll give you a truly out of this world experience!</p>
     </div>
     <div class="explore">
-      <span class="font1">EXPLORE</span>
+      <RouterLink to="/destination" class="font1">EXPLORE</RouterLink>
     </div>
   </div>
 </template>
@@ -151,7 +151,7 @@
 
 }
 
-.main .explore span {
+.main .explore a {
   display: block;
   color: var(--home-background);
   font-size: 32px;

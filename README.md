@@ -104,3 +104,10 @@ https://cn.vuejs.org/guide/essentials/list.html
    };
    ```
 
+## 单独设置页面样式
+
+https://hooray.github.io/posts/ddffb6ac/
+
+页面在跳转时，在跳转页面执行到 mounted() 前，会先执行原页面的 beforeDestory() 和 destroyed() 方法，然后再执行跳转页面的 mounted() 
+
+所以将设置Body背景图片的逻辑写到mounted()中就可以实现单独设置页面背景图片样式的效果

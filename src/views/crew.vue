@@ -11,6 +11,12 @@ export default {
   async created() {
     this.crews = await service.getData('crew')
   },
+  mounted() {
+    document.body.setAttribute("class", "crewBody")
+  },
+  beforeDestroy() {
+    document.body.removeAttribute("class", "crewBody")
+  },
   methods: {
     updateCrew(crew, index) {
       this.currentImage = crew.images.png;
@@ -45,21 +51,21 @@ export default {
 
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
-  body {
+  .crewBody {
     background: url('../assets/crew/background-crew-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
-  body {
+  .crewBody {
     background: url('../assets/crew/background-crew-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  body {
+  .crewBody {
     background: url('../assets/crew/background-crew-desktop.jpg') no-repeat;
     background-size: cover;
   }

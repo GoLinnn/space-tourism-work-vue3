@@ -13,6 +13,12 @@ export default {
   async created() {
     this.destinations = await service.getData('destinations')
   },
+  mounted() {
+    document.body.setAttribute("class", "desBody")
+  },
+  beforeDestroy() {
+    document.body.removeAttribute("class", "desBody")
+  },
   methods: {
     updateDes(destination, index) {
       this.currentImage = destination.images.png;
@@ -62,21 +68,21 @@ export default {
 
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
-  body {
+  .desBody {
     background: url('../assets/destination/background-destination-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
-  body {
+  .desBody {
     background: url('../assets/destination/background-destination-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  body {
+  .desBody {
     background: url('../assets/destination/background-destination-desktop.jpg') no-repeat;
     background-size: cover;
   }

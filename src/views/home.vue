@@ -1,5 +1,12 @@
 <script>
-
+export default {
+  mounted() {
+    document.body.setAttribute("class", "homeBody")
+  },
+  beforeDestroy() {
+    document.body.removeAttribute("class", "homeBody")
+  }
+}
 </script>
 
 <template>
@@ -19,21 +26,21 @@
 
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
-  body {
+  .homeBody {
     background: url('@/assets/home/background-home-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
-  body {
+  .homeBody {
     background: url('@/assets/home/background-home-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1040px) {
-  body {
+  .homeBody {
     background: url('@/assets/home/background-home-desktop.jpg') no-repeat;
     background-size: cover;
   }

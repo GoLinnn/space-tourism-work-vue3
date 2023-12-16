@@ -11,6 +11,12 @@ export default {
   async created() {
     this.technologies = await service.getData('technology')
   },
+  mounted() {
+    document.body.setAttribute("class", "techBody")
+  },
+  beforeDestroy() {
+    document.body.removeAttribute("class", "techBody")
+  },
   methods: {
     updateTech(technology, index) {
       this.currentImage = technology.images.portrait;
@@ -40,21 +46,21 @@ export default {
 </template>
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
-  body {
+  .techBody {
     background: url('../assets/technology/background-technology-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
-  body {
+  .techBody {
     background: url('../assets/technology/background-technology-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1040px) {
-  body {
+  .techBody {
     background: url('../assets/technology/background-technology-desktop.jpg') no-repeat;
     background-size: cover;
   }

@@ -1,4 +1,23 @@
-<script setup>
+<script>
+import service from '@/service/service.js'
+export default {
+  data() {
+    return {
+      crews: [],
+      currentImage: '',
+      id: 0
+    }
+  },
+  async created() {
+    this.crews = await service.getData('crew')
+  },
+  methods: {
+    updateCrew(crew, index) {
+      this.currentImage = crew.images.png;
+      this.id = index;
+    }
+  }
+}
 </script>
 
 <template>
@@ -6,24 +25,18 @@
   <div class="peopleBox">
     <div class="peopleImg_mobile"></div>
     <div class="people">
-      <ul class="bottomnav bottomnav_mobile">
-        <li><a href="#" class="active" data-id="0"></a></li>
-        <li><a href="#" data-id="1"></a></li>
-        <li><a href="#" data-id="2"></a></li>
-        <li><a href="#" data-id="3"></a></li>
-      </ul>
-      <div class="des">
-        <h4 class="font1" id="role">COMMANDER</h4>
-        <h2 class="font1" id="name">DOUGLAS HURLEY</h2>
-        <p class="font3">Douglas Gerald Hurley is an American engineer, former Marine Corps pilot
-          and former NASA astronaut. He launched into space for the third time as
-          commander of Crew Dragon Demo-2.</p>
+      <!-- <ul class="bottomnav bottomnav_mobile">
+        <li v-for="(crew, index) in crews" :key="index"><a href="#" :class="{ active: id === index }"
+            @click="updateCrew(crew, index)"></a></li>
+      </ul> -->
+      <div class="des" v-if="crews.length > 0">
+        <h4 class="font1" id="role">{{ crews[id].role.toUpperCase() }}</h4>
+        <h2 class="font1" id="name">{{ crews[id].name.toUpperCase() }}</h2>
+        <p class="font3">{{ crews[id].bio }}</p>
       </div>
       <ul class="bottomnav bottomnav_nomobile">
-        <li><a href="#" class="active" data-id="0"></a></li>
-        <li><a href="#" data-id="1"></a></li>
-        <li><a href="#" data-id="2"></a></li>
-        <li><a href="#" data-id="3"></a></li>
+        <li v-for="(crew, index) in crews" :key="index"><a href="#" :class="{ active: id === index }"
+            @click="updateCrew(crew, index)"></a></li>
       </ul>
     </div>
     <div class="peopleImg"></div>

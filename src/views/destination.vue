@@ -1,5 +1,5 @@
 <script>
-import axios from 'axios'
+import service from '@/service/service.js'
 export default {
   data() {
     return {
@@ -11,8 +11,7 @@ export default {
     }
   },
   async created() {
-    const res = await axios.get('db.json')
-    this.destinations = res.data.destinations;
+    this.destinations = await service.getData('destinations')
   },
   methods: {
     updateDes(destination, index) {

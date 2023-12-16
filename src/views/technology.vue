@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       technologies: [],
-      currentImage: '',
+      currentImage: '/src/assets/technology/image-launch-vehicle-portrait.jpg',
       id: 0
     }
   },
@@ -36,7 +36,7 @@ export default {
     </div>
   </div>
   <!-- PC端图片位置 -->
-  <div class="launchImg"></div>
+  <div v-if="technologies.length > 0" class="launchImg" :style="{ background: `url(${currentImage}) no-repeat` }"></div>
 </template>
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
@@ -238,7 +238,6 @@ h3 span {
   margin-top: -350px;
   width: 450px;
   height: 450px;
-  background: url(../assets/technology/image-launch-vehicle-portrait.jpg) no-repeat;
   background-size: 100%;
 
   @media screen and (min-width: 375px) {

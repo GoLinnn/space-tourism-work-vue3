@@ -163,7 +163,7 @@ export default {
   color: var(--home-background);
   font-size: 32px;
   letter-spacing: 2px;
-  margin-top: 90px;
+  margin-top: 118px;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {
     font-size: 20px;

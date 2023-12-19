@@ -27,7 +27,6 @@
                 </RouterLink>>
             </li>
         </ul>
-        <RouterView />
     </div>
 </template>
 <script>
@@ -36,7 +35,7 @@ export default {
 
 }
 </script>
-<style scoped>
+<style>
 .topbar {
     position: relative;
     height: 96px;

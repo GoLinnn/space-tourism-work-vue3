@@ -9,7 +9,7 @@
                 </g>
             </svg>
         </div>
-        <div class="topbar_box">
+        <div class="topbar_box" @click="showNav">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21">
                 <g fill="#D0D6F9" fill-rule="evenodd">
                     <path d="M0 0h24v3H0zM0 9h24v3H0zM0 18h24v3H0z" />
@@ -17,8 +17,8 @@
             </svg>
         </div>
     </div>
-    <div class="topbar_nav">
-        <div class="close">
+    <div class="topbar_nav" :class="{ topbar_nav_hide: isHide }">
+        <div @click="hideNav">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21">
                 <g fill="#D0D6F9" fill-rule="evenodd">
                     <path d="M2.575.954l16.97 16.97-2.12 2.122L.455 3.076z" />
@@ -45,6 +45,21 @@
     </div>
 </template>
 <script>
+export default {
+    data() {
+        return {
+            isHide: true
+        }
+    },
+    methods: {
+        showNav() {
+            this.isHide = false
+        },
+        hideNav() {
+            this.isHide = true
+        }
+    },
+}
 </script>
 <style scoped>
 body {
@@ -88,7 +103,6 @@ body {
 
 /* 菜单页面 */
 .topbar_nav {
-    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -97,6 +111,10 @@ body {
     height: 667px;
     background-color: var(--home-foreground-25);
     backdrop-filter: blur(30px);
+}
+
+.topbar_nav_hide {
+    display: none;
 }
 
 .topbar_nav .close {
@@ -122,4 +140,5 @@ body {
 .topbar_nav .topnav_mobile a span {
     font-weight: bold;
     margin-right: 12px;
-}</style>
+}
+</style>

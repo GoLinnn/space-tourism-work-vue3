@@ -32,7 +32,8 @@ export default {
   <h3 class="font2"><span>01</span>PICK YOUR DESTINATION</h3>
   <div class="star">
     <!-- 星球图片 -->
-    <div class="sphere" v-if="destinations.length > 0" :style="{ background: `url(${currentImage})` }"></div>
+    <div class="sphere" v-if="destinations.length > 0"
+      :style="{ background: `url(${currentImage})`, backgroundSize: 'cover' }"></div>
     <!-- 防止渲染前data未准备好 -->
     <div class="sphere" v-else>Loading...</div>
 

@@ -12,5 +12,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    base: process.env.NODE_ENV === 'production'
+      ? '/space-tourism-work-vue3/'
+      : '/'
   }
 })

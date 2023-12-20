@@ -59,6 +59,7 @@ export default {
             this.isShow = false
         }
     },
+    // 使用watch监听路由变化，默认不显示侧边导航栏
     watch: {
         '$route'() {
             this.isShow = false;

@@ -111,3 +111,202 @@ https://hooray.github.io/posts/ddffb6ac/
 页面在跳转时，在跳转页面执行到 mounted() 前，会先执行原页面的 beforeDestory() 和 destroyed() 方法，然后再执行跳转页面的 mounted() 
 
 所以将设置Body背景图片的逻辑写到mounted()中就可以实现单独设置页面背景图片样式的效果
+
+## 三种响应方式：watch、watchEffect、reactive
+
+### watch
+
+`watch`可以观察单个或多个数据源，并在改变时触发回调函数，它返回的旧值-新值这样的数据，有助于我们了解**数据变化之前之后的对比。**
+
+```vue
+<template>
+  <button @click="count++">Click me</button>
+  <p>Clicked: {{ count }} times</p>
+</template>
+
+<script>
+import { ref, watch } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+
+    watch(count, (newValue, oldValue) => {
+      console.log(`Count changed from ${oldValue} to ${newValue}`);
+    });
+
+    return { count };
+  }
+};
+</script>
+```
+
+### watchEffect
+
+```vue
+<template>
+  <button @click="count++">Click me</button>
+  <p>You clicked {{ count }} times</p>
+</template>
+
+<script>
+import { ref, watchEffect } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+
+    watchEffect(() => {
+      console.log(`Count is ${count.value}`);
+    });
+
+    return { count };
+  }
+};
+</script>
+```
+
+`watchEffect`会立即执行传入的函数，并在函数内**任何响应式数据**变化时重新执行，对于**需要立即执行并自动追踪依赖**的逻辑，`watchEffect`会非常方便。
+
+### reactive
+
+```vue
+<template>
+  <button @click="state.count++">Click me</button>
+  <p>You clicked {{ state.count }} times</p>
+</template>
+
+<script>
+import { reactive } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({ count: 0 });
+
+    return { state };
+  }
+};
+</script>
+```
+
+`reactive`函数接收一个普通对象然后返回该普通对象的响应式代理。等同于 2.x 的 `Vue.observable()` 。`reactive` 和 `watch` 的主要区别在于`reactive`可以用于创建一个新的响应式对象，而`watch`用于观察已有的数据源的改变。
+
+#### 优先使用`reactive`的情况
+
+1. 需要创建一个新的响应式对象。`reactive`是创建新的响应式数据的直接方法，而`watch`和`watchEffect`主要是监听已经存在的响应式数据。
+2. 需要管理一个组件内部多个响应式属性。`reactive`可以在一个对象中管理多个属性，这比为每个属性单独创建一个`watch`或`watchEffect`效率更高。
+3. 当你需要对对象的某个属性进行响应式处理，并且希望保持对象的形态不变时。`reactive`返回的是一个原始对象的响应式代理，你可以直接像访问普通对象一样操作它。
+
+#### 使用reactive实现购物车例子
+
+假设一个购物车组件，其中包含商品的列表，每个商品都有数量和价格等属性，需要计算购物车的总价格。
+
+在这种情况下，一个很好的做法是把购物车作为一个`reactive`对象，每个商品也是一个`reactive`对象，这样就可以很容易地添加，删除和更新商品，计算总价等等。
+
+```Vue
+<template>
+  <div>
+    <div v-for="(item, index) in cart.items" :key="index">
+      <p>产品名称: {{ item.name }}</p>
+      <p>产品数量: {{ item.quantity }}</p>
+      <p>产品价格: {{ item.price }}</p>
+      <button @click="increaseQuantity(index)">增加数量</button>
+      <button @click="removeItem(index)">移除商品</button>
+    </div>
+    <p>购物车总价: {{ totalPrice }}</p>
+  </div>
+</template>
+
+<script>
+import { reactive, computed } from 'vue';
+
+export default {
+  setup() {
+    const cart = reactive({
+      items: [
+        { name: '商品1', quantity: 2, price: 10 },
+        { name: '商品2', quantity: 1, price: 20 },
+        { name: '商品2', quantity: 1, price: 20 }
+      ]
+    });
+
+    const totalPrice = computed(() => {
+      return cart.items.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    });
+
+    function increaseQuantity(index) {
+      cart.items[index].quantity++;
+    }
+
+    function removeItem(index) {
+      cart.items.splice(index, 1);
+    }
+
+    return {
+      cart,
+      totalPrice,
+      increaseQuantity,
+      removeItem
+    };
+  }
+};
+</script>
+```
+
+## 组合式API`setup`函数的基本使用
+
+```vue
+<template>
+  <div>
+    <p>{{ count }}</p>
+    <button @click="increment">增加</button>
+  </div>
+</template>
+
+<script>
+import { reactive, toRefs } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({
+      count: 0,
+      // 还有其他属性...
+    });
+
+    function increment() {
+      state.count++;
+    }
+    
+    return {
+        /*state对象有很多属性，可以使用toRefs函数一次性把state对象的所有属性转换为响应式引用，返回给模板使用*/
+      ...toRefs(state),
+      increment
+    };
+  }
+};
+</script>
+```
+
+## 关于`<script setup>`语法糖
+
+在 Vue 3.2 版本开始，Vue 提供了新的 `<script setup>` 语法糖，它将 `<script>` 变成了一个 `setup` 函数块。在 `<script setup>` 内部，不能再使用 `export default` 定义和导出一个组件选项对象，因为 `setup` 并不是一个组件对象，而只是一个函数。在 `<script setup>` 中，所有的 `export` 函数或者变量都会暴露为组件的公共 API，可以在模板中直接使用。
+
+```vue
+<template>
+  <button @click="increment">{{ count }}</button>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+</script>
+```
+
+在这个例子中，`count` 和 `increment` 函数都是直接导出并在模板中使用的，没有使用 `export default`。

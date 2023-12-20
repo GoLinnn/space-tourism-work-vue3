@@ -52,21 +52,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .crewBody {
-    background: url('../assets/crew/background-crew-mobile.jpg') no-repeat;
+    background: url('@/assets/crew/background-crew-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .crewBody {
-    background: url('../assets/crew/background-crew-tablet.jpg') no-repeat;
+    background: url('@/assets/crew/background-crew-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .crewBody {
-    background: url('../assets/crew/background-crew-desktop.jpg') no-repeat;
+    background: url('@/assets/crew/background-crew-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
@@ -110,7 +110,7 @@ h3 span {
     width: 327px;
     height: 200px;
     margin: 20px auto;
-    background: url('../assets/crew/image-douglas-hurley.png') no-repeat;
+    background: url('@/assets/crew/image-douglas-hurley.png') no-repeat;
     background-size: contain;
     background-position: center;
     border-bottom: 1px solid var(--home-foreground-oval-after);

@@ -70,21 +70,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .desBody {
-    background: url('../assets/destination/background-destination-mobile.jpg') no-repeat;
+    background: url('@/assets/destination/background-destination-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .desBody {
-    background: url('../assets/destination/background-destination-tablet.jpg') no-repeat;
+    background: url('@/assets/destination/background-destination-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .desBody {
-    background: url('../assets/destination/background-destination-desktop.jpg') no-repeat;
+    background: url('@/assets/destination/background-destination-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }

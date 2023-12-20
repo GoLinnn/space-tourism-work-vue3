@@ -17,7 +17,7 @@
             </svg>
         </div>
     </div>
-    <div class="topbar_nav" :class="{ topbar_nav_hide: isHide }">
+    <div class="topbar_nav" v-if="isShow">
         <div @click="hideNav">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21">
                 <g fill="#D0D6F9" fill-rule="evenodd">
@@ -39,7 +39,7 @@
             </li>
             <li>
                 <RouterLink to="/technology" :class="{ active: $route.path === '/technology' }"><span>03</span>Technology
-                </RouterLink>>
+                </RouterLink>
             </li>
         </ul>
     </div>
@@ -48,15 +48,20 @@
 export default {
     data() {
         return {
-            isHide: true
+            isShow: false
         }
     },
     methods: {
         showNav() {
-            this.isHide = false
+            this.isShow = true
         },
         hideNav() {
-            this.isHide = true
+            this.isShow = false
+        }
+    },
+    watch: {
+        '$route'() {
+            this.isShow = false;
         }
     },
 }
@@ -111,10 +116,6 @@ body {
     height: 667px;
     background-color: var(--home-foreground-25);
     backdrop-filter: blur(30px);
-}
-
-.topbar_nav_hide {
-    display: none;
 }
 
 .topbar_nav .close {

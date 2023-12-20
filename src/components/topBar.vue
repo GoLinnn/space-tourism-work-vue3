@@ -24,7 +24,7 @@
             </li>
             <li>
                 <RouterLink to="/technology" :class="{ active: $route.path === '/technology' }"><span>03</span>Technology
-                </RouterLink>>
+                </RouterLink>
             </li>
         </ul>
     </div>

@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/space-tourism-work-vue3/',
   plugins: [
     vue(),
   ],
@@ -13,9 +14,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {
-    base: process.env.NODE_ENV === 'production'
-      ? '/space-tourism-work-vue3/'
-      : '/'
-  }
 })

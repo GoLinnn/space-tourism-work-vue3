@@ -31,10 +31,10 @@ export default {
   <div class="peopleBox">
     <div class="peopleImg_mobile"></div>
     <div class="people">
-      <!-- <ul class="bottomnav bottomnav_mobile">
+      <ul class="bottomnav bottomnav_mobile">
         <li v-for="(crew, index) in crews" :key="index"><a href="#" :class="{ active: id === index }"
             @click="updateCrew(crew, index)"></a></li>
-      </ul> -->
+      </ul>
       <div class="des" v-if="crews.length > 0">
         <h4 class="font1" id="role">{{ crews[id].role.toUpperCase() }}</h4>
         <h2 class="font1" id="name">{{ crews[id].name.toUpperCase() }}</h2>

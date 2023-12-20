@@ -4,7 +4,8 @@ export default {
   data() {
     return {
       technologies: [],
-      currentImage: './src/assets/technology/image-launch-vehicle-portrait.jpg',
+      currentImage: 'public/technology/image-launch-vehicle-portrait.jpg',
+      currentImageTable: 'public/technology/image-launch-vehicle-landscape.jpg',
       id: 0
     }
   },
@@ -20,6 +21,7 @@ export default {
   methods: {
     updateTech(technology, index) {
       this.currentImage = technology.images.portrait;
+      this.currentImageTable = technology.images.landscape;
       this.id = index;
     }
   }
@@ -29,7 +31,8 @@ export default {
 <template>
   <h3 class="font2"><span>03</span>SPACE LAUNCH 101</h3>
   <!-- 移动端图片位置 -->
-  <div class="launchImgMove"></div>
+  <div v-if="technologies.length > 0" class="launchImgMove"
+    :style="{ background: `url(${currentImageTable}) no-repeat`, backgroundSize: '100%' }"></div>
   <div class="launchbox">
     <ul class="leftnav">
       <li v-for="(technology, index) in technologies" :key="index"><a href="#" class="font1"
@@ -47,21 +50,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .techBody {
-    background: url('@/assets/technology/background-technology-mobile.jpg') no-repeat;
+    background: url('public/technology/background-technology-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .techBody {
-    background: url('@/assets/technology/background-technology-tablet.jpg') no-repeat;
+    background: url('public/technology/background-technology-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1040px) {
   .techBody {
-    background: url('@/assets/technology/background-technology-desktop.jpg') no-repeat;
+    background: url('public/technology/background-technology-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
@@ -259,7 +262,7 @@ h3 span {
   width: 100vw;
   height: 310px;
   margin-top: 60px;
-  background: url('@/assets/technology/image-launch-vehicle-landscape.jpg') no-repeat;
+  background: url('public/technology/image-launch-vehicle-landscape.jpg') no-repeat;
   background-size: 100%;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {

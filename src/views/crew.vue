@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       crews: [],
-      currentImage: '/src/assets/crew/image-douglas-hurley.png',
+      currentImage: 'public/crew/image-douglas-hurley.png',
       id: 0
     }
   },
@@ -29,7 +29,9 @@ export default {
 <template>
   <h3 class="font2"><span>02</span>MEET YOUR CREW</h3>
   <div class="peopleBox">
-    <div class="peopleImg_mobile"></div>
+    <div v-if="crews.length > 0" class="peopleImg_mobile"
+      :style="{ background: `url(${currentImage}) no-repeat`, backgroundSize: 'contain', backgroundPosition: 'center' }">
+    </div>
     <div class="people">
       <ul class="bottomnav bottomnav_mobile">
         <li v-for="(crew, index) in crews" :key="index"><a href="#" :class="{ active: id === index }"
@@ -52,21 +54,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .crewBody {
-    background: url('@/assets/crew/background-crew-mobile.jpg') no-repeat;
+    background: url('public/crew/background-crew-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .crewBody {
-    background: url('@/assets/crew/background-crew-tablet.jpg') no-repeat;
+    background: url('public/crew/background-crew-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .crewBody {
-    background: url('@/assets/crew/background-crew-desktop.jpg') no-repeat;
+    background: url('public/crew/background-crew-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
@@ -110,7 +112,7 @@ h3 span {
     width: 327px;
     height: 200px;
     margin: 20px auto;
-    background: url('@/assets/crew/image-douglas-hurley.png') no-repeat;
+    background: url('public/crew/image-douglas-hurley.png') no-repeat;
     background-size: contain;
     background-position: center;
     border-bottom: 1px solid var(--home-foreground-oval-after);

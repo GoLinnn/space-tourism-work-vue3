@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       crews: [],
-      currentImage: 'public/crew/image-douglas-hurley.png',
+      currentImage: '/crew/image-douglas-hurley.png',
       id: 0
     }
   },
@@ -54,21 +54,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .crewBody {
-    background: url('public/crew/background-crew-mobile.jpg') no-repeat;
+    background: url('/crew/background-crew-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .crewBody {
-    background: url('public/crew/background-crew-tablet.jpg') no-repeat;
+    background: url('/crew/background-crew-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .crewBody {
-    background: url('public/crew/background-crew-desktop.jpg') no-repeat;
+    background: url('/crew/background-crew-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
@@ -112,7 +112,7 @@ h3 span {
     width: 327px;
     height: 200px;
     margin: 20px auto;
-    background: url('public/crew/image-douglas-hurley.png') no-repeat;
+    background: url('/crew/image-douglas-hurley.png') no-repeat;
     background-size: contain;
     background-position: center;
     border-bottom: 1px solid var(--home-foreground-oval-after);

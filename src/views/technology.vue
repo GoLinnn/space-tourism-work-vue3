@@ -4,8 +4,8 @@ export default {
   data() {
     return {
       technologies: [],
-      currentImage: 'public/technology/image-launch-vehicle-portrait.jpg',
-      currentImageTable: 'public/technology/image-launch-vehicle-landscape.jpg',
+      currentImage: '/technology/image-launch-vehicle-portrait.jpg',
+      currentImageTable: '/technology/image-launch-vehicle-landscape.jpg',
       id: 0
     }
   },
@@ -50,21 +50,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .techBody {
-    background: url('public/technology/background-technology-mobile.jpg') no-repeat;
+    background: url('/technology/background-technology-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .techBody {
-    background: url('public/technology/background-technology-tablet.jpg') no-repeat;
+    background: url('/technology/background-technology-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1040px) {
   .techBody {
-    background: url('public/technology/background-technology-desktop.jpg') no-repeat;
+    background: url('/technology/background-technology-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
@@ -262,7 +262,7 @@ h3 span {
   width: 100vw;
   height: 310px;
   margin-top: 60px;
-  background: url('public/technology/image-launch-vehicle-landscape.jpg') no-repeat;
+  background: url('/technology/image-launch-vehicle-landscape.jpg') no-repeat;
   background-size: 100%;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {

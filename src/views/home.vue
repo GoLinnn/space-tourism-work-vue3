@@ -27,21 +27,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .homeBody {
-    background: url('public/home/background-home-mobile.jpg') no-repeat;
+    background: url('/home/background-home-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .homeBody {
-    background: url('public/home/background-home-tablet.jpg') no-repeat;
+    background: url('/home/background-home-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1040px) {
   .homeBody {
-    background: url('public/home/background-home-desktop.jpg') no-repeat;
+    background: url('/home/background-home-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }

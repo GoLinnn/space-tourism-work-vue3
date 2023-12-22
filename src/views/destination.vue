@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       destinations: [],
-      currentImage: 'public/destination/image-moon.png',
+      currentImage: '/destination/image-moon.png',
       // 若将图片放到public文件下则不会经过打包处理
       // currentImage: '/image-moon.png',
       id: 0
@@ -70,21 +70,21 @@ export default {
 <style>
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .desBody {
-    background: url('public/destination/background-destination-mobile.jpg') no-repeat;
+    background: url('/destination/background-destination-mobile.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 768px) {
   .desBody {
-    background: url('public/destination/background-destination-tablet.jpg') no-repeat;
+    background: url('/destination/background-destination-tablet.jpg') no-repeat;
     background-size: cover;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .desBody {
-    background: url('public/destination/background-destination-desktop.jpg') no-repeat;
+    background: url('/destination/background-destination-desktop.jpg') no-repeat;
     background-size: cover;
   }
 }
